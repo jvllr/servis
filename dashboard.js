@@ -208,7 +208,7 @@ async function confirmDelete() {
     alert('Failed to delete: ' + err.message);
   } finally {
     deleteConfirmBtn.disabled = false;
-    deleteConfirmBtn.innerHTML = '<i data-lucide="trash-2"></i> Yes, Delete';
+    deleteConfirmBtn.innerHTML = '<i data-lucide="trash-2"></i> Delete';
     lucide.createIcons();
   }
 }
