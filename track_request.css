@@ -1,0 +1,493 @@
+/* =============================================
+   track_request.css
+   SERVIS | Manila City Hall EDP
+   ============================================= */
+
+/* ── Page wrapper ── */
+
+.tr-main {
+  min-height: calc(100vh - 64px);
+  background: #f0f4f8;
+  padding: 56px 24px 80px;
+}
+
+/* ── Page header ── */
+
+.tr-page-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.tr-page-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1d4ed8;
+  margin: 0 auto 20px;
+}
+
+.tr-page-icon i {
+  width: 28px;
+  height: 28px;
+}
+
+.tr-page-header h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 800;
+  color: #0d1b2a;
+  margin: 0 0 10px;
+  letter-spacing: -0.5px;
+}
+
+.tr-page-header p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ── Shared card ── */
+
+.tr-card {
+  max-width: 860px;
+  margin: 0 auto 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 32px 36px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Search card ── */
+
+.tr-search-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.tr-search-row input {
+  flex: 1;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #0d1b2a;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 11px 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tr-search-row input::placeholder {
+  color: #9ca3af;
+}
+
+.tr-search-row input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.tr-track-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #1d4ed8;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 28px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
+}
+
+.tr-track-btn:hover {
+  background: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.35);
+}
+
+.tr-track-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Status card ── */
+
+.tr-status-card {
+  animation: fadeUp 0.3s ease;
+}
+
+.tr-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  gap: 16px;
+}
+
+.tr-status-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.tr-tracking-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1d4ed8;
+  letter-spacing: 0.5px;
+}
+
+/* Status badge */
+.tr-badge {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tr-badge--pending {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.tr-badge--inprogress {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.tr-badge--completed {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.tr-badge--pulledout {
+  background: #f3e8ff;
+  color: #6b21a8;
+  border: 1px solid #e9d5ff;
+}
+
+/* ── Progress stepper ── */
+
+.tr-stepper {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.tr-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.tr-step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #9ca3af;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.tr-step-circle.active {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #ffffff;
+}
+
+.tr-step-label {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 500;
+  text-align: center;
+}
+
+.tr-step-label.active {
+  color: #0d1b2a;
+  font-weight: 600;
+}
+
+/* Connector lines between steps */
+.tr-step-connector {
+  flex: 1;
+  height: 2px;
+  background: #e5e7eb;
+  margin-top: 20px; /* vertically center with circle */
+  transition: background 0.4s ease;
+}
+
+.tr-step-connector.active {
+  background: #16a34a;
+}
+
+/* ── Details card ── */
+
+.tr-details-card {
+  animation: fadeUp 0.35s ease 0.05s both;
+}
+
+.tr-details-card h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0d1b2a;
+  margin: 0 0 24px;
+}
+
+.tr-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+  margin-bottom: 20px;
+}
+
+.tr-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.tr-detail-item i {
+  width: 18px;
+  height: 18px;
+  color: #9ca3af;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tr-detail-item .tr-detail-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tr-detail-item .tr-detail-field {
+  font-size: 0.78rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.tr-detail-item .tr-detail-value {
+  font-size: 0.95rem;
+  color: #0d1b2a;
+  font-weight: 600;
+}
+
+.tr-divider {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 20px 0;
+}
+
+.tr-details-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+  margin-bottom: 4px;
+}
+
+.tr-plain-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tr-plain-field .tr-detail-field {
+  font-size: 0.78rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.tr-plain-field .tr-detail-value {
+  font-size: 0.95rem;
+  color: #0d1b2a;
+  font-weight: 600;
+}
+
+.tr-desc-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.tr-desc-block i {
+  width: 18px;
+  height: 18px;
+  color: #9ca3af;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tr-desc-block .tr-detail-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tr-timestamps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tr-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.83rem;
+  color: #6b7280;
+}
+
+.tr-timestamp i {
+  width: 15px;
+  height: 15px;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+/* ── Not found card ── */
+
+.tr-notfound-card {
+  border-color: #fecaca;
+  text-align: center;
+  padding: 48px 36px;
+  animation: fadeUp 0.3s ease;
+}
+
+.tr-notfound-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fee2e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc2626;
+  margin: 0 auto 20px;
+}
+
+.tr-notfound-icon i {
+  width: 28px;
+  height: 28px;
+}
+
+.tr-notfound-card h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0d1b2a;
+  margin: 0 0 10px;
+}
+
+.tr-notfound-card p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.tr-try-again-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0d1b2a;
+  background: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 28px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.tr-try-again-btn:hover {
+  border-color: #9ca3af;
+  background: #f9fafb;
+}
+
+/* ── Animation ── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .tr-main {
+    padding: 40px 16px 64px;
+  }
+
+  .tr-card {
+    padding: 24px 20px;
+  }
+
+  .tr-details-grid,
+  .tr-details-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .tr-status-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tr-step-label {
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tr-search-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tr-track-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .tr-page-header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ── Pulled Out note ── */
+
+.tr-pulledout-note {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  padding: 0.5rem 0 0.25rem;
+  font-style: italic;
+}

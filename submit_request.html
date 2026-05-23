@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Job Order | SERVIS – Manila City Hall EDP</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="layout.css" />
+  <link rel="stylesheet" href="submit_request.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <!-- ── Page Content ── -->
+  <main class="sr-main">
+
+    <!-- Page heading -->
+    <div class="sr-page-header">
+      <div class="sr-page-icon">
+        <i data-lucide="file-text" aria-hidden="true"></i>
+      </div>
+      <h1>Submit Job Order</h1>
+      <p>Fill out the form below to submit an IT service request</p>
+    </div>
+
+    <!-- Form card -->
+    <div class="sr-card">
+
+      <div class="sr-card-header">
+        <h2>Request Information</h2>
+        <p>Please provide accurate information so we can assist you better</p>
+      </div>
+
+      <form id="job-order-form" novalidate>
+
+        <!-- REQUESTER INFORMATION -->
+        <fieldset class="sr-fieldset">
+          <legend class="sr-legend">Requester Information</legend>
+
+          <div class="sr-form-grid">
+
+            <div class="sr-field">
+              <label for="full-name">Full Name <span class="required">*</span></label>
+              <input
+                type="text"
+                id="full-name"
+                name="fullName"
+                placeholder="Juan Dela Cruz"
+                autocomplete="name"
+                required
+              />
+              <span class="sr-error" id="full-name-error"></span>
+            </div>
+
+            <div class="sr-field">
+              <label for="department">Department/Office <span class="required">*</span></label>
+              <input
+                type="text"
+                id="department"
+                name="department"
+                placeholder="e.g., Office of the Mayor"
+                required
+              />
+              <span class="sr-error" id="department-error"></span>
+            </div>
+
+            <div class="sr-field">
+              <label for="contact-number">Contact Number <span class="required">*</span></label>
+              <input
+                type="tel"
+                id="contact-number"
+                name="contactNumber"
+                placeholder="09XX XXX XXXX"
+                maxlength="13"
+                required
+              />
+              <span class="sr-error" id="contact-number-error"></span>
+            </div>
+
+            <div class="sr-field">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="juan.delacruz@manila.gov.ph"
+                autocomplete="email"
+                required
+              />
+              <span class="sr-error" id="email-error"></span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- SERVICE DETAILS -->
+        <fieldset class="sr-fieldset">
+          <legend class="sr-legend">Service Details</legend>
+
+          <div class="sr-form-grid">
+
+            <div class="sr-field sr-field--full">
+              <label for="service-type">Service Type <span class="required">*</span></label>
+              <div class="sr-select-wrapper">
+                <select id="service-type" name="serviceType" required>
+                  <option value="" disabled selected>Select service type</option>
+                  <option value="hardware-repair">Hardware Repair</option>
+                  <option value="software-installation">Software Installation</option>
+                  <option value="network-issues">Network Issues</option>
+                  <option value="printer-issues">Printer Issues</option>
+                  <option value="data-backup-recovery">Data Backup/Recovery</option>
+                  <option value="system-upgrade">System Upgrade</option>
+                  <option value="other">Other</option>
+                </select>
+
+              </div>
+              <span class="sr-error" id="service-type-error"></span>
+            </div>
+
+            <div class="sr-field sr-field--full">
+              <label for="issue-description">Issue Description <span class="required">*</span></label>
+              <textarea
+                id="issue-description"
+                name="issueDescription"
+                rows="5"
+                placeholder="Please describe your IT issue in detail. Include any error messages, when the issue started, and what you were doing when it occurred."
+                required
+              ></textarea>
+              <span class="sr-error" id="issue-description-error"></span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- Submit -->
+        <div class="sr-submit-area">
+          <button type="submit" class="sr-submit-btn">
+            Submit Job Order
+          </button>
+          <p class="sr-disclaimer">By submitting this form, you agree that the information provided is accurate.</p>
+        </div>
+
+      </form>
+    </div>
+
+  </main>
+
+  <!-- Success Modal -->
+  <div class="sr-modal-overlay" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="sr-modal">
+      <div class="sr-modal-icon">
+        <i data-lucide="check-circle" aria-hidden="true"></i>
+      </div>
+      <h2 id="modal-title">Request Submitted!</h2>
+      <p>Your job order has been submitted successfully. Please save your tracking number below.</p>
+      <div class="sr-tracking-box">
+        <span class="sr-tracking-label">Tracking Number</span>
+        <strong id="tracking-number" class="sr-tracking-number"></strong>
+      </div>
+      <p class="sr-modal-note">Present this tracking number when following up with the EDP office.</p>
+      <button class="sr-modal-close" id="modal-close-btn">Done</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="layout.js"></script>
+  <script src="submit_request.js"></script>
+</body>
+</html>

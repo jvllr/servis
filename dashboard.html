@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SERVIS Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <a href="dashboard.html" class="site-logo" aria-label="SERVIS Home">
+        <img src="picture/servis_logo.png" alt="SERVIS Logo" class="logo-img" />
+      </a>
+      <button class="btn-logout" id="logoutBtn">
+        <i data-lucide="log-out" aria-hidden="true"></i>
+        Logout
+      </button>
+    </header>
+
+    <!-- Main -->
+    <main class="dashboard-main">
+
+      <!-- Stat Cards -->
+      <section class="stats-grid" aria-label="Request statistics">
+        <article class="stat-card">
+          <div class="stat-icon stat-icon--blue">
+            <i data-lucide="package" aria-hidden="true"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="statTotal">0</span>
+            <span class="stat-label">Total Requests</span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon stat-icon--yellow">
+            <i data-lucide="clock" aria-hidden="true"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="statPending">0</span>
+            <span class="stat-label">Pending</span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon stat-icon--blue-light">
+            <i data-lucide="loader" aria-hidden="true"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="statInProgress">0</span>
+            <span class="stat-label">In Progress</span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon stat-icon--green">
+            <i data-lucide="check-circle" aria-hidden="true"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="statCompleted">0</span>
+            <span class="stat-label">Completed</span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon stat-icon--red">
+            <i data-lucide="alert-circle" aria-hidden="true"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="statPulledOut">0</span>
+            <span class="stat-label">Pulled Out</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Service Requests Table -->
+      <section class="requests-panel">
+        <div class="panel-header">
+          <hgroup class="panel-title-group">
+            <h2 class="panel-title">Service Requests</h2>
+            <p class="panel-subtitle">Manage and update all IT service requests</p>
+          </hgroup>
+        </div>
+
+        <div class="panel-filters">
+          <div class="search-wrapper">
+            <i data-lucide="search" aria-hidden="true"></i>
+            <input
+              type="search"
+              id="searchInput"
+              class="search-input"
+              placeholder="Search by tracking number, name, or department..."
+              aria-label="Search service requests"
+            />
+          </div>
+          <div class="select-wrapper">
+            <select id="statusFilter" class="status-select" aria-label="Filter by status">
+              <option value="">All Status</option>
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Pulled Out">Pulled Out</option>
+            </select>
+            <i data-lucide="chevron-down" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="requests-table" id="requestsTable">
+            <thead>
+              <tr>
+                <th>Tracking #</th>
+                <th>Requester</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="requestsBody">
+              <!-- Populated by dashboard.js -->
+            </tbody>
+          </table>
+
+          <!-- Empty state -->
+          <div class="empty-state" id="emptyState" hidden>
+            <i data-lucide="package" aria-hidden="true"></i>
+            <p>No service requests found</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- View Request Modal -->
+    <div class="modal-overlay" id="viewModalOverlay" hidden>
+      <div class="modal" id="viewModal" role="dialog" aria-modal="true" aria-labelledby="viewModalTitle">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title" id="viewModalTitle">Request Details</h3>
+            <p class="modal-tracking" id="viewTrackingNumber"></p>
+          </div>
+          <button class="modal-close" id="viewModalClose" aria-label="Close">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-section">
+            <h4 class="modal-section-title">Requester Information</h4>
+            <div class="modal-grid">
+              <div class="modal-field">
+                <span class="modal-label">Full Name</span>
+                <span class="modal-value" id="viewRequesterName">—</span>
+              </div>
+              <div class="modal-field">
+                <span class="modal-label">Department</span>
+                <span class="modal-value" id="viewDepartment">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-section">
+            <h4 class="modal-section-title">Service Information</h4>
+            <div class="modal-grid">
+              <div class="modal-field">
+                <span class="modal-label">Service Type</span>
+                <span class="modal-value" id="viewServiceType">—</span>
+              </div>
+              <div class="modal-field">
+                <span class="modal-label">Status</span>
+                <span class="modal-value" id="viewStatus">—</span>
+              </div>
+              <div class="modal-field">
+                <span class="modal-label">Date Submitted</span>
+                <span class="modal-value" id="viewCreatedAt">—</span>
+              </div>
+              <div class="modal-field">
+                <span class="modal-label">Last Updated</span>
+                <span class="modal-value" id="viewUpdatedAt">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-section" id="viewDescriptionSection">
+            <h4 class="modal-section-title">Description / Remarks</h4>
+            <p class="modal-description" id="viewDescription">—</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Request Modal -->
+    <div class="modal-overlay" id="editModalOverlay" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title" id="editModalTitle">Edit Request</h3>
+            <p class="modal-tracking" id="editTrackingNumber"></p>
+          </div>
+          <button class="modal-close" id="editModalClose" aria-label="Close">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-field">
+            <label class="modal-label" for="editStatus">Status</label>
+            <select id="editStatus" class="edit-select">
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Pulled Out">Pulled Out</option>
+            </select>
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" for="editRemarks">Remarks</label>
+            <textarea id="editRemarks" class="edit-textarea" rows="4" placeholder="Add remarks or notes..."></textarea>
+          </div>
+          <div class="edit-actions">
+            <button class="btn-cancel" id="editModalCancel">Cancel</button>
+            <button class="btn-save" id="editModalSave">
+              <i data-lucide="save"></i>
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModalOverlay" hidden>
+      <div class="modal-delete" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+        <div class="modal-delete-bar"></div>
+        <div class="modal-delete-body">
+          <div class="delete-icon-wrap">
+            <i data-lucide="trash-2"></i>
+          </div>
+          <h3 class="delete-title" id="deleteModalTitle">Delete Request?</h3>
+          <p class="delete-subtitle">You are about to permanently delete this service request. This action cannot be undone.</p>
+          <div class="delete-tracking-chip">
+            <i data-lucide="hash"></i>
+            <span id="deleteTrackingDisplay"></span>
+          </div>
+          <div class="delete-warning">
+            <i data-lucide="alert-triangle"></i>
+            <span class="delete-warning-text">All associated data including status history and remarks will be permanently removed.</span>
+          </div>
+        </div>
+        <div class="modal-delete-footer">
+          <button class="btn-cancel" id="deleteCancelBtn">Cancel</button>
+          <button class="btn-delete-confirm" id="deleteConfirmBtn">
+            <i data-lucide="trash-2"></i>
+            Yes, Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

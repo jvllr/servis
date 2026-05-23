@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Request | SERVIS – Manila City Hall EDP</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="layout.css" />
+  <link rel="stylesheet" href="track_request.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <!-- ── Page Content ── -->
+  <main class="tr-main">
+
+    <!-- Page heading -->
+    <div class="tr-page-header">
+      <div class="tr-page-icon">
+        <i data-lucide="search" aria-hidden="true"></i>
+      </div>
+      <h1>Track Your Request</h1>
+      <p>Enter your tracking number to view the status of your service request</p>
+    </div>
+
+    <!-- Search card -->
+    <div class="tr-card tr-search-card">
+      <div class="tr-search-row">
+        <input
+          type="text"
+          id="tracking-input"
+          placeholder="Enter tracking number (e.g., EDP-260523-1234)"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="track-btn" class="tr-track-btn">Track</button>
+      </div>
+    </div>
+
+    <!-- Result area (hidden by default) -->
+    <div id="tr-result-area"></div>
+
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="layout.js"></script>
+  <script src="track_request.js"></script>
+</body>
+</html>
